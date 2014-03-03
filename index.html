@@ -20,6 +20,12 @@
 
    <!-- Script -->
   <script type="text/javascript">
+    Person = Backbone.Model.extend({
+      initialize: function() {
+        console.log("Person initialized");
+      }
+    });
+
     SearchView = Backbone.View.extend({
       el: $("#search_container"),
 
