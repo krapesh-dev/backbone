@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Backbone JS</title>
+</head>
+<body>
+  <div id="search_container"></div>
+
+  <!-- Templates -->
+  <script type="text/template" id="search_template">
+    <label><%= search_label %></label>
+    <input type="text" id="search_input" />
+    <input type="button" id="search_button" value="Search" />
+  </script>
+
+  <!-- External Libraries -->
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+
+   <!-- Script -->
+  <script type="text/javascript">
+    SearchView = Backbone.View.extend({
+      el: $("#search_container"),
+
+      initialize: function() {
+       this.render();
+      },
+
+      render: function() {
+        var variables= {search_label: "Search"};
+        var template = _.template( $("#search_template").html(), variables );
+        this.$el.html(template);
+      },
+
+      events: {
+        "click #search_button" : "doSearch"
+      },
+
+      doSearch: function() {
+        console.log("Search for : " + $("#search_input").val() );
+      }
+    });
+
+    new SearchView();
+  </script>  
+</body>
+</html>
